@@ -34,12 +34,12 @@ TIME() {
 	echo -ne " "
 } || {
 	 case $1 in
-	r) export Color="\e[31;1m";;
-	g) export Color="\e[32;1m";;
-	b) export Color="\e[34;1m";;
-	y) export Color="\e[33;1m";;
-	z) export Color="\e[35;1m";;
-	l) export Color="\e[36;1m";;
+	r) 输出 Color="\e[31;1m";;
+	g) 输出 Color="\e[32;1m";;
+	b) 输出 Color="\e[34;1m";;
+	y) 输出 Color="\e[33;1m";;
+	z) 输出 Color="\e[35;1m";;
+	l) 输出 Color="\e[36;1m";;
 	  esac
 	[[ $# -lt 2 ]] && echo -e "\e[36m\e[0m ${1}" || {
 		echo -e "\e[36m\e[0m ${Color}${2}\e[0m"
@@ -119,7 +119,7 @@ aptsources() {
 	TIME r "请输入正确编码！"
 	;;
 	esac
-	done
+	已完成
 	TIME g "apt源，更换完成!"
 }
 # CT模板国内源
@@ -150,7 +150,7 @@ ctsources() {
 	TIME r "请输入正确编码！"
 	;;
 	esac
-	done
+	已完成
 	TIME g "CT模板源，更换完成!"
 }
 # 更换使用帮助源
@@ -455,7 +455,7 @@ EOF
 		*)
 		;;
 		esac
-	done
+	已完成
 }
 #--------------开启硬件直通----------------
 
@@ -533,7 +533,7 @@ EOF
 				cpupower
 			fi
 		fi
-	done
+	已完成
 }
 
 # 修改CPU模式
@@ -608,7 +608,7 @@ for package in "${packages[@]}"; do
         install=ok
         break
     fi
-done
+已完成
 
 
 [[ -e /usr/sbin/linux-cpupower ]] && chmod +s /usr/sbin/linux-cpupower
@@ -635,7 +635,7 @@ else
         if [ `grep $i /etc/modules|wc -l` = 0 ];then
             echo $i >> /etc/modules
         fi
-    done
+    已完成
     sensors
     sleep 3
     echo 驱动信息配置成功。
@@ -683,8 +683,8 @@ for i in {0..9}; do
 EOF
             break
         fi
-    done
-done
+    已完成
+已完成
 
 ###################  修改node.pm   ##########################
 echo 修改node.pm：
@@ -1085,8 +1085,8 @@ for i in {0..9}; do
 EOF
             break
         fi
-    done
-done
+    已完成
+已完成
 
 
 # SATA硬盘温度
@@ -1192,7 +1192,7 @@ rm $tmpf
 echo 修改页面高度
 disk_count=$(lsblk -d -o NAME | grep -cE 'sd[a-z]|nvme[0-9]')
 # 高度变量，某些CPU核心过多，或者想显示那个PVE存储库那一行，导致高度不够，修改69为合适的数字，如80、100等。
-height_increase=$((disk_count * 69))
+height_increase=$((disk_count * 80))
 
 node_status_new_height=$((400 + height_increase))
 sed -i -r '/widget\.pveNodeStatus/,+5{/height/{s#[0-9]+#'$node_status_new_height'#}}' $pvemanagerlib
@@ -1292,7 +1292,7 @@ for index in "${selected_indices[@]}"; do
   if [ -n "$kernel" ]; then
     kernels_to_remove+=("$kernel")
   fi
-done
+已完成
 
 if [ ${#kernels_to_remove[@]} -eq 0 ]; then
   echo -e "${RD}未做出有效选择，退出。${CL}"
@@ -1316,7 +1316,7 @@ for kernel in "${kernels_to_remove[@]}"; do
   else
     echo -e "${RD}删除失败: $kernel ，检查依赖关系。${CL}"
   fi
-done
+已完成
 
 # Clean up and update GRUB
 echo -e "${YW}清理中...${CL}"
